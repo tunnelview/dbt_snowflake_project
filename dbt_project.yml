@@ -46,7 +46,7 @@ models:
        +materialized: view
        +schema:  app
        +database: |
-         {%- if target.name == "default" -%} dbt_krivebatch8
+         {%- if target.name == "default" -%} dbt_dev
          {%- elif target.name == "dev" -%} dbt_dev
          {%- elif target.name == "qa" -%} dbt_qa
          {%- elif target.name == "prd" -%} dbt_prd
@@ -58,7 +58,7 @@ models:
      +materialized: table
      +schema:  edw
      +database: |
-       {%- if target.name == "default" -%} dbt_krivebatch8
+       {%- if target.name == "default" -%} dbt_dev
        {%- elif target.name == "dev" -%} dbt_dev
        {%- elif target.name == "qa" -%} dbt_qa
        {%- elif target.name == "prd" -%} dbt_prd
@@ -69,7 +69,7 @@ models:
      +materialized: table
      +schema:  stg
      +database: |
-       {%- if target.name == "default" -%} dbt_krivebatch8
+       {%- if target.name == "default" -%} dbt_dev
        {%- elif target.name == "dev" -%} dbt_dev
        {%- elif target.name == "qa" -%} dbt_qa
        {%- elif target.name == "prd" -%} dbt_prd
@@ -104,7 +104,7 @@ seeds:
 snapshots:
  +target_schema: edw
  +target_database: |
-   {%- if target.name == "default" -%} dbt_krivebatch8
+   {%- if target.name == "default" -%} dbt_dev
    {%- elif target.name == "dev" -%} dbt_dev
    {%- elif target.name == "qa" -%} dbt_qa
    {%- elif target.name == "prd" -%} dbt_prd
