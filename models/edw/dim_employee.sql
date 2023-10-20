@@ -10,6 +10,8 @@
     with max_user_key AS(
         select max(user_key) as max_user_key from {{ this }}
     ) -- for migration project, there are two types of load- history load and incremental load.
+
+    
     select
         --CAST(ROW_NUMBER() OVER (ORDER BY EMPLOYEE_ID) as NUMBER(38,0)) as USER_KEY ,
     nvl(dim.USER_KEY,mx.max_user_key + ROW_NUMBER() OVER (order by stg.EMPLOYEE_ID)) as USER_KEY,
@@ -22,13 +24,13 @@
     stg.HIRE_DATE ,
     stg.EMPLOYMENT_STATUS,
     stg.MD5_COLUMN,
-    nvl(dim.SNOW_INSERT_TIME,current_timestamp) as SNOW_INSERT_TIME,
-    current_timestamp as SNOW_UPDATE_TIME
+    nvl(dim.SNOW_INSERT_TIME,current_timestamp) as SNOW_INSERT_TIME, -- the original insertion time.
+    current_timestamp as SNOW_UPDATE_TIME -- the time when the record is getting updated.
     FROM {{ ref('stg_dim_employee')}} stg
     LEFT JOIN {{ this }} dim
     ON nvl(stg.EMPLOYEE_ID,0) = nvl(dim.EMPLOYEE_ID,0)
     CROSS JOIN max_user_key mx
-    where stg.MD5_COLUMN <> dim.MD5_COLUMN
+    where stg.MD5_COLUMN <> dim.MD5_COLUMN--- to identify whether this is incremental in nature.
 
 {% else %}
     select
