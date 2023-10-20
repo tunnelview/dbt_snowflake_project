@@ -24,7 +24,7 @@
     stg.MD5_COLUMN,
     nvl(dim.SNOW_INSERT_TIME,current_timestamp) as SNOW_INSERT_TIME,
     current_timestamp as SNOW_UPDATE_TIME
-    FROM {{ ref('stg_dim_user')}} stg
+    FROM {{ ref('stg_dim_employee')}} stg
     LEFT JOIN {{ this }} dim
     ON nvl(stg.EMPLOYEE_ID,0) = nvl(dim.EMPLOYEE_ID,0)
     CROSS JOIN max_user_key mx
@@ -44,6 +44,6 @@
     MD5_COLUMN,
     current_timestamp as SNOW_INSERT_TIME,
     current_timestamp as SNOW_UPDATE_TIME
-    FROM {{ ref('stg_dim_user')}} 
+    FROM {{ ref('stg_dim_employee')}} 
 
 {% endif %}
