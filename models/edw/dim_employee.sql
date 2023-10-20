@@ -1,15 +1,15 @@
 {{
     config(
-        materialized= 'incremental',
+        materialized= 'incremental', 
         unique_key='EMPLOYEE_ID',
         incremental_strategy='merge'
-    )
-}}
+    ) 
+}} --its not a drop and create, infact it is merge. merge(scd1), append only, add/delete
 
 {% if is_incremental() %}
     with max_user_key AS(
         select max(user_key) as max_user_key from {{ this }}
-    )
+    ) -- for migration project, there are two types of load- history load and incremental load.
     select
         --CAST(ROW_NUMBER() OVER (ORDER BY EMPLOYEE_ID) as NUMBER(38,0)) as USER_KEY ,
     nvl(dim.USER_KEY,mx.max_user_key + ROW_NUMBER() OVER (order by stg.EMPLOYEE_ID)) as USER_KEY,
