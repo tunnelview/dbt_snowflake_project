@@ -6,10 +6,12 @@
 config(
 unique_key= 'EMPLOYEE_ID',
 strategy='check',
-check_cols=['md5_column']
+check_cols=['md5_column'] 
 )
 
-}}
+}}-- check the md5 column, if you see any change in these columns compared to the target tables, 
+--apply scd2. ie maintain history.
+
 
 select * from {{ ref('dim_employee')}}
 
