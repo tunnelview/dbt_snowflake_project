@@ -30,7 +30,7 @@
     LEFT JOIN {{ this }} dim
     ON nvl(stg.EMPLOYEE_ID,0) = nvl(dim.EMPLOYEE_ID,0)
     CROSS JOIN max_user_key mx
-    where stg.MD5_COLUMN <> dim.MD5_COLUMN--- to identify whether this is incremental in nature.
+    Where nvl(stg.MD5_COLUMN,'') <> nvl(dim.MD5_COLUMN,'')--- to identify whether this is incremental in nature.
 
 {% else %}
     select
