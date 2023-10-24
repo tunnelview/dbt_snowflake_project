@@ -2,14 +2,18 @@
     config(
         materialized= 'incremental', 
         unique_key='EMPLOYEE_ID',
-        incremental_strategy='merge'
+        incremental_strategy='merge',
+        pre_hook="update dbt_dev.src.employee set phone = '77784663413' where employee_id = 3;"
     ) 
 }} --its not a drop and create, infact it is merge. merge(scd1), append only, add/delete
+
+
 
 {% if is_incremental() %}
     with max_user_key AS(
         select max(user_key) as max_user_key from {{ this }}
     ) -- for migration project, there are two types of load- history load and incremental load.
+
 
     
     select
