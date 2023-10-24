@@ -49,3 +49,8 @@
     FROM {{ ref('stg_dim_employee')}} 
 
 {% endif %}
+
+-- Post hook and pre hook -- It allows you to execute sql statements just before or just after the 
+--execution of the model.
+--Today - How can we configure the above?
+
