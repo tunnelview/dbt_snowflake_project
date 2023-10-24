@@ -3,7 +3,8 @@
         materialized= 'incremental', 
         unique_key='EMPLOYEE_ID',
         incremental_strategy='merge',
-        post_hook="update dbt_dev.src.employee set phone = '77784663413' where employee_id = 3;"
+        post_hook="update dbt_dev.src.employee set phone = '77784663413' where employee_id = 3;",
+        pre_hook="update dbt_dev.src.employee set phone = '45784656744' where employee_id = 3"
     ) 
 }} --its not a drop and create, infact it is merge. merge(scd1), append only, add/delete
 
