@@ -2,12 +2,13 @@
     config(
         materialized= 'incremental', 
         unique_key='EMPLOYEE_ID',
-        incremental_strategy='merge',
-        post_hook="update dbt_dev.src.employee set phone = '77784663413' where employee_id = 3;",
-        pre_hook="update dbt_dev.src.employee set phone = '45784656744' where employee_id = 3"
+        incremental_strategy='merge'
+        
     ) 
 }} --its not a drop and create, infact it is merge. merge(scd1), append only, add/delete
 
+--post_hook="update dbt_dev.src.employee set phone = '77784663413' where employee_id = 3;",
+        --pre_hook="update dbt_dev.src.employee set phone = '45784656744' where employee_id = 3"
 
 
 {% if is_incremental() %}
@@ -58,4 +59,6 @@
 -- Post hook and pre hook -- It allows you to execute sql statements just before or just after the 
 --execution of the model.
 --Today - How can we configure the above?
+
+--
 
