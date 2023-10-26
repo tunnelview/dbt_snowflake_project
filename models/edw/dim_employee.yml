@@ -3,11 +3,11 @@ version: 2
 models:
   - name: dim_employee
     columns:
-      - name: employee_id
+      - name: EMPLOYEE_NAME
         tests:
           - unique:
               config:
                 store_failures: false  # always store failures-- if your test fails, it doesn't store the failure
           - not_null:
               config:
-                store_failures: true  # never store failures-- if set to true, it will store the failure.
+                store_failures: false  # never store failures-- if set to true, it will store the failure.
