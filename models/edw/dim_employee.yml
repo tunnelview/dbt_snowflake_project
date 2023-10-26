@@ -3,7 +3,7 @@ version: 2
 models:
   - name: dim_employee
     columns:
-      - name: EMPLOYEE_NAME
+      - name: email
         tests:
           - unique:
               config:
