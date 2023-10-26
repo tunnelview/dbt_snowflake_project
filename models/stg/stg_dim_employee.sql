@@ -9,8 +9,10 @@ PHONE ,
 ADDRESS ,
 HIRE_DATE ,
 EMPLOYMENT_STATUS
-FROM {{source('src','employee')}} -- this is where the table is referred but not managed or created by dbt, 
-)--rather in snowflake.
+FROM {{source('src','employee')}}
+-- this is where the table is referred but not managed or created by dbt, 
+)
+--rather in snowflake.
 
 -- Main SELECT
 SELECT
