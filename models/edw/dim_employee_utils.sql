@@ -1,5 +1,5 @@
 select 
-{{ dbt_utils.generate_surrogate_key(['EMPLOYEE_ID']) }},
+{{ dbt_utils.generate_surrogate_key(['EMPLOYEE_ID']) }} as Employee_Key,
 EMPLOYEE_ID ,
 EMPLOYEE_NAME ,
 DEPARTMENT_ID ,
