@@ -1,3 +1,4 @@
+select 
 {{ dbt_utils.generate_surrogate_key(['EMPLOYEE_ID']) }},
 EMPLOYEE_ID ,
 EMPLOYEE_NAME ,
