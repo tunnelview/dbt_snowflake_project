@@ -8,14 +8,14 @@ select
 dept_id,
 {% for dept_nm in dept_names -%}
 
-sum(case when dept_name = '{{ dept_nm }}' then 1 else 0 end) as {{ dept_nm }}_flag
+case when dept_name = '{{ dept_nm }}' then 1 else 0 end as {{ dept_nm }}_flag
 
-{%- if not loop.last -%}
+{%- if loop.last -%}
 ,
 {% endif -%}
 
 {%- endfor %}
 from dept
-group by 1
+
 )
 select * from final
