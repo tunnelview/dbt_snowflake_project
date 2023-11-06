@@ -10,7 +10,7 @@ dept_id,
 
 case when dept_name = '{{ dept_nm }}' then 1 else 0 end as {{ dept_nm }}_flag
 
-{%- if loop.first -%}
+{%- if not loop.last -%}
 ,
 {% endif -%}
 
