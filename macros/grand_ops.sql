@@ -11,3 +11,4 @@ grant select on all views in schema {{ schema }} to role {{ role }};
 {{ log('Grants provided', info = True)}}
 
 {% endmacro %}
+
